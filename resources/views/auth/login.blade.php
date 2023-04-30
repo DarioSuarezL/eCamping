@@ -14,7 +14,7 @@
 
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <x-input-label for="password" :value="__('Contraseña')" />
 
             <x-text-input id="password" class="block mt-1 w-full"
                             type="password"
@@ -33,14 +33,14 @@
         </div> --}}
 
         <div class="flex justify-between my-3">
-            <x-link :href="route('password.request')">¿Olvidó su contraseña?
-            </x-link>
+            {{-- <x-link :href="route('password.request')">¿Olvidó su contraseña?
+            </x-link> --}}
 
-            <x-link :href="route('register')">¿Ya está registrado?
+            <x-link :href="route('register')">¿Aún no está registrado?
             </x-link>
         </div>
         <x-primary-button>
-            {{ __('Log in') }}
+            {{ __('Iniciar sesión') }}
         </x-primary-button>
 
     </form>
