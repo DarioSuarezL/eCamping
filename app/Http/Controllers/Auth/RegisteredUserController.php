@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cliente;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -34,12 +35,21 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'direccion' => ['required', 'max:255'],
+            'telefono' => ['required', 'numeric', 'unique:'.Cliente::class],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+        ]);
+
+        $cliente = Cliente::create([
+            'genero' => $request->genero,
+            'direccion' => $request->direccion,
+            'telefono' => $request->telefono,
+            'user_id' => $user->id,
         ]);
 
         event(new Registered($user));
