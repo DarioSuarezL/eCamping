@@ -19,7 +19,7 @@
         <!-- Genero -->
         <div class="mt-4">
             <x-input-label for="genero" :value="__('Genero')" />
-            <select name="genero" id="genero" class="block mt-1 w-full">
+            <select name="genero" id="genero" class="block mt-1 w-full dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
                 <option value="O" selected hidden>Seleccione su genero</option>
                 <option value="M">Masculino</option>
                 <option value="F">Femenino</option>
