@@ -22,8 +22,13 @@ Route::get('/', function () {
 Route::get('/dashboard', [ProductController::class, 'index'])->middleware(['auth',])
     ->name('product.index'); // 'verified'
 
+
 Route::get('/products/create', [ProductController::class, 'create'])->middleware(['auth',])
     ->name('product.create'); 
+
+Route::post('/products/create', [ProductController::class, 'create'])->middleware(['auth',])
+    ->name('product.create'); 
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

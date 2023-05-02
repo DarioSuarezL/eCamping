@@ -1,4 +1,4 @@
-<form action="" class="md:w-1/2">
+<form class="md:w-1/2" wire:submit.prevent="createProduct" novalidate>
 
     <!-- Nombre producto -->
     <div>
@@ -31,21 +31,20 @@
     
     <!-- Categoria producto -->
     <div class="mt-4">
-        <x-input-label for="categoria_id" :value="__('Categoría')" />
+        <x-input-label for="category_id" :value="__('Categoría')" />
         <select 
-            wire:model="categoria_id" 
-            id="categoria_id" 
+            wire:model="category_id" 
+            id="category_id" 
             class="block mt-1 w-full dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
         >
 
-            <option selected hidden>Seleccione la categoria</option>
+            <option value="" hidden> -Seleccionar categoría- </option>
 
             @foreach ($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->nombre }}</option>
             @endforeach
 
         </select>
-        <x-input-error :messages="$errors->get('categoria')" class="mt-2" />
     </div>
 
     <!-- Precio producto -->
@@ -81,13 +80,23 @@
         <x-input-label for="imagen" :value="__('Imagen')" />
         <x-text-input 
             id="imagen"
-            class="block mt-1 w-full dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm" 
+            class="block mt-1 w-full border dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm p-3" 
             type="file"
             wire:model="imagen" 
+            accept="image/*"
             required
         />
         <x-input-error :messages="$errors->get('imagen')" class="mt-2" />
     </div>
+
+    @if ($imagen)
+    <div class="my-5 flex justify-around bg-gray-900 rounded-lg p-5 border border-gray-700">
+        <p class="text-sm text-white">
+                Vista previa de la imagen:
+        </p>
+        <img src="{{ $imagen->temporaryUrl() }}" class="mt-2" alt="Imagen" width="200" height="200" />
+    </div>
+    @endif
 
 
     <div class="flex items-center justify-end mt-10">
