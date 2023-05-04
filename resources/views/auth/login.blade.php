@@ -32,7 +32,7 @@
             </label>
         </div> --}}
 
-        <div class="flex justify-between my-3">
+        <div class="flex justify-between my-2">
             {{-- <x-link :href="route('password.request')">¿Olvidó su contraseña?
             </x-link> --}}
 
