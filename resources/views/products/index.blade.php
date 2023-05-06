@@ -17,7 +17,9 @@
                     {{ __("Lista de productos") }}
                 </div>
             </div>
+
             <livewire:show-products />
+
         </div>
     </div>
 </x-app-layout>

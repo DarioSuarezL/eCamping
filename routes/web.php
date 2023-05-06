@@ -24,11 +24,13 @@ Route::get('/dashboard', [ProductController::class, 'index'])->middleware(['auth
 
 
 Route::get('/products/create', [ProductController::class, 'create'])->middleware(['auth',])
-    ->name('product.create'); 
-
+    ->name('product.create');
 Route::post('/products/create', [ProductController::class, 'create'])->middleware(['auth',])
-    ->name('product.create'); 
-
+    ->name('product.create');
+Route::get('/products/{product}', [ProductController::class, 'show'])->middleware(['auth',])
+    ->name('product.show');
+Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->middleware(['auth',])
+    ->name('product.edit');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

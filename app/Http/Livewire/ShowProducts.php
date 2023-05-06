@@ -9,7 +9,7 @@ class ShowProducts extends Component
 {
     public function render()
     {
-        $products = Product::all();
+        $products = Product::paginate(18);
         return view('livewire.show-products',[
             'products' => $products
         ]);
