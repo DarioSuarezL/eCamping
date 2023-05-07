@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [ProductController::class, 'index'])->middleware(['auth',])
+Route::get('/dashboard', [ProductController::class, 'index'])
     ->name('product.index'); // 'verified'
 
 
@@ -27,10 +28,13 @@ Route::get('/products/create', [ProductController::class, 'create'])->middleware
     ->name('product.create');
 Route::post('/products/create', [ProductController::class, 'create'])->middleware(['auth',])
     ->name('product.create');
-Route::get('/products/{product}', [ProductController::class, 'show'])->middleware(['auth',])
+Route::get('/products/{product}', [ProductController::class, 'show'])
     ->name('product.show');
 Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->middleware(['auth',])
     ->name('product.edit');
+
+Route::get('/orders/cart', [OrderController::class, 'index'])->middleware(['auth',])
+    ->name('order.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

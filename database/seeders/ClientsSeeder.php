@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\Cliente;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Storage;
 
-class AdminSeeder extends Seeder
+class ClientsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,12 +16,15 @@ class AdminSeeder extends Seeder
     {
         $dario = User::create([
             'name' => 'Dario',
-            'email' => 'dario@correo.com',
+            'email' => 'dario1@correo.com',
             'password' => bcrypt('12345678'),
-            'role' => 0,
         ]);
-        Storage::deleteDirectory('products');
-        Storage::makeDirectory("public/products");
-
+        
+        Cliente::create([
+            'user_id' => $dario->id,
+            'genero' => 'M',
+            'telefono' => '12345678',
+            'direccion' => 'Calle 1',
+        ]);
     }
 }

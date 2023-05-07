@@ -3,7 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,18 +14,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-
         $this->call([
             AdminSeeder::class,
             CategorySeeder::class,
             BrandSeeder::class,
-            // VentaSeeder::class,
+            ClientsSeeder::class,
+            PaymentMethodsSeeder::class,
+            StatusesSeeder::class,
         ]);
+        Storage::deleteDirectory('public/products');
+        Storage::makeDirectory('public/products');
     }
 }
