@@ -11,6 +11,13 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+
+    public function index()
+    {
+        $this->authorize('viewAny', User::class);
+        return view('user.index');
+    }
+    
     /**
      * Display the user's profile form.
      */

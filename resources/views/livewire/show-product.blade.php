@@ -41,7 +41,8 @@
                     {{$product->descripcion}}
                 </p>
             </div>
-            @auth                
+            @auth               
+            @if (auth()->user()->role == 1)                
             <div class="p-5">
                 <form wire:submit.prevent="addToCart({{$product->id}})" class="flex">
 
@@ -65,6 +66,7 @@
                     </button>
                 </form>
             </div>
+            @endif 
             @endauth
 
             {{-- //agradecimientos al compañero copilot --}}
@@ -79,16 +81,13 @@
                 </a>
             @endguest
         </div>
-{{-- 
-        
-          }) --}}
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 
     <script>
-        Livewire.on('showAlert', productId => {
+        Livewire.on('showAlert', () => {
             Swal.fire({
                 position: 'center',
                 icon: 'success',

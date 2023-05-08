@@ -20,7 +20,7 @@
 
                 <div class="mb-5">
                     <label class="block mb-1 text-sm text-white uppercase font-bold">{{__('Categorias')}}</label>
-                    <select wire:model="category" class="border-gray-300 p-2 w-full">
+                    <select wire:model="category" class="border-gray-300 p-2 w-full rounded-md">
                         <option hidden>--Seleccione--</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->nombre }}</option>
@@ -30,7 +30,7 @@
 
                 <div class="mb-5">
                     <label class="block mb-1 text-sm text-white uppercase font-bold">{{__('Marca')}}</label>
-                    <select wire:model="brand" class="border-gray-300 p-2 w-full">
+                    <select wire:model="brand" class="border-gray-300 p-2 w-full rounded-md">
                         <option hidden>--Seleccione--</option>
                         @foreach ($brands as $brand)
                             <option value="{{ $brand->id }}">{{$brand->nombre}}</option>

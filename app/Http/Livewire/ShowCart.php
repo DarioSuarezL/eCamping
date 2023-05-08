@@ -27,7 +27,8 @@ class ShowCart extends Component
             ]);
         }
         return view('livewire.show-cart', [
-            'product_orders' => []
+            'product_orders' => [],
+            'total' => 0,
         ]);
     }
 }

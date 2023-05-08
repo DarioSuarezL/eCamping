@@ -14,14 +14,14 @@ class ClientsSeeder extends Seeder
      */
     public function run(): void
     {
-        $dario = User::create([
-            'name' => 'Dario',
-            'email' => 'dario1@correo.com',
+        $cliente = User::create([
+            'name' => 'Cliente',
+            'email' => 'cliente@correo.com',
             'password' => bcrypt('12345678'),
         ]);
         
         Cliente::create([
-            'user_id' => $dario->id,
+            'user_id' => $cliente->id,
             'genero' => 'M',
             'telefono' => '12345678',
             'direccion' => 'Calle 1',

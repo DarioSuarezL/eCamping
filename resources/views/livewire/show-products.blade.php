@@ -1,7 +1,7 @@
 @if ($products->count() > 0)
 <div class="sm:flex sm:flex-col md:grid md:grid-cols-2 md:grid-rows-9 lg:grid-cols-3 lg:grid-rows-6 gap-4 mt-4">
     @foreach ($products as $product)
-    <div>
+    <div class="mt-8 md:mt-0">
         <a href="{{route('product.show', $product)}}" class="bg-white dark:bg-gray-800 rounded-t-lg p-3 dark:hover:bg-gray-700 hover:cursor-pointer flex justify-around ">
             <img src="{{asset('storage/products/'.$product->imagen)}}" alt="{{$product->nombre}}" class="rounded-lg w-1/3">
             <div class="bg-white dark:bg-gray-900 rounded-lg p-3 text-left w-2/4">
@@ -11,11 +11,14 @@
                 <p class="text-white text-sm">Disponibles: {{$product->stock}}</p>
             </div>
         </a>
+
+        {{-- PARA PERSONAS CON ROL DE ADMIN --}}
+
         @auth
         @if (auth()->user()->role == 0)
         <div class="flex w-full">
             <button
-                wire:click="$emit('showAlert',{{$product->id}})"
+                wire:click="$emit('showAlertDelete',{{$product->id}})"
                 class="dark:text-white bg-red-800 rounded-bl-lg p-3 hover:bg-red-600 hover:cursor-pointer flex justify-center w-1/2"
             >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -28,6 +31,9 @@
                   </svg> <span class="hidden md:block"> Editar </span>
             </a>
         </div>
+
+        {{-- PARA PERSONAS CON ROL DE CLIENTE --}}
+
         @else
         <div class="flex w-full">
             <a href="{{route('product.show', $product)}}" class="dark:text-white bg-green-800 rounded-bl-lg p-3 hover:bg-green-600 hover:cursor-pointer flex justify-center w-1/2">
@@ -36,15 +42,20 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg> <span class="hidden md:block"> Ver </span> 
             </a>
-            <a href="#" class="dark:text-white bg-blue-800 rounded-br-lg p-3 hover:bg-blue-600 hover:cursor-pointer flex justify-center w-1/2">
+            <button
+                wire:click="addToCart({{$product->id}})"
+                class="dark:text-white bg-blue-800 rounded-br-lg p-3 hover:bg-blue-600 hover:cursor-pointer flex justify-center w-1/2"
+            >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-                  </svg> <span class="hidden md:block"> Añadir al carrito </span>
-            </a>
+                </svg> <span class="hidden md:block"> Añadir al carrito </span>
+            </button>
         </div>
         @endif
         @endauth
-        {{-- PARA NO AUTH --}}
+
+        {{-- PARA PERSONAS QUE NO INICIARON SESION --}}
+
         @guest
         <div class="flex w-full">
             <a href="{{route('product.show', $product)}}" class="dark:text-white bg-green-800 rounded-b-lg p-3 hover:bg-green-600 hover:cursor-pointer flex justify-center w-full">
@@ -65,7 +76,7 @@
 
 @else
     <p class="font-semibold text-xl text-gray-800 dark:text-gray-200 w-full text-center mt-5">
-        ¡UPS! NO HAY PRODUCTOS, TENEMOS EL STOCK VACÍO
+        ¡UPS! NO HAY PRODUCTOS
     </p>
 @endif
 
@@ -73,7 +84,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 <script>
-    Livewire.on('showAlert', productId => {
+    Livewire.on('showAlertDelete', productId => {
         Swal.fire({
             title: 'Estás seguro de eliminar el producto?',
             html: '<div class="text-white text-sm bg-red-700 p-2 rounded-lg">No podrás recuperar lo eliminado!</div>',
@@ -93,8 +104,18 @@
             }
         })
     })
+</script>
 
-
+<script>
+    Livewire.on('showAlertCart', () => {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Añadido al carrito!',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    })
 </script>
 @endpush
 

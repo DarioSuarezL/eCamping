@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -37,6 +39,15 @@ Route::get('/orders/cart', [OrderController::class, 'index'])->middleware(['auth
     ->name('order.index');
 Route::get('/orders/create', [OrderController::class, 'create'])->middleware(['auth',])
     ->name('order.create');
+
+Route::get('/users', [ProfileController::class, 'index'])->middleware(['auth',])
+    ->name('profile.index');
+
+Route::get('/categories', [CategoryController::class, 'index'])->middleware(['auth',])
+    ->name('category.index');
+
+Route::get('/brands', [BrandController::class, 'index'])->middleware(['auth',])
+    ->name('brand.index'); 
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

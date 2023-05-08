@@ -18,11 +18,31 @@
                 </div>
                 @auth                   
                 @if (auth()->user()->role == 0)   
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('product.create')" :active="request()->routeIs('product.create')">
                         {{ __('Nuevo producto') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.index')">
+                        {{ __('Gestión de usuarios') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.index')">
+                        {{ __('Gestión de categorias') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('brand.index')" :active="request()->routeIs('brand.index')">
+                        {{ __('Gestión de marcas') }}
+                    </x-nav-link>
+                </div>
+
                 @else
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('order.index')" :active="request()->routeIs('order.index')">
@@ -110,12 +130,25 @@
             <x-responsive-nav-link :href="route('product.index')" :active="request()->routeIs('product.index')">
                 {{ __('Inicio') }}
             </x-responsive-nav-link>
+
             @auth                
-            @if (auth()->user()->role == 0)                
+            @if (auth()->user()->role == 0)           
+
                 <x-responsive-nav-link :href="route('product.create')" :active="request()->routeIs('product.create')">
                     {{ __('Nuevo producto') }}
                 </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.index')">
+                    {{ __('Gestión de usuarios') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('category.index')" :active="request()->routeIs('category.index')">
+                    {{ __('Gestión de categorias') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('brand.index')" :active="request()->routeIs('brand.index')">
+                    {{ __('Gestión de marcas') }}
+                </x-responsive-nav-link>
+
             @endif
+
                 <x-responsive-nav-link :href="route('order.index')" :active="request()->routeIs('order.index')">
                     {{ __('Carrito de compras') }}
                 </x-responsive-nav-link>
