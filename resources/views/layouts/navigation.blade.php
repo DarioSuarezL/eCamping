@@ -25,7 +25,7 @@
                 </div>
                 @else
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('product.create')" :active="request()->routeIs('product.create')">
+                    <x-nav-link :href="route('order.index')" :active="request()->routeIs('order.index')">
                         {{ __('Carrito de compras') }}
                     </x-nav-link>
                 </div>
@@ -116,6 +116,9 @@
                     {{ __('Nuevo producto') }}
                 </x-responsive-nav-link>
             @endif
+                <x-responsive-nav-link :href="route('order.index')" :active="request()->routeIs('order.index')">
+                    {{ __('Carrito de compras') }}
+                </x-responsive-nav-link>
             @endauth
         </div>
 

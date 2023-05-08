@@ -51,8 +51,8 @@
     <div class="mt-4">
         <x-input-label for="brand_id" :value="__('Marca')" />
         <select
-            wire:model="brand_id"
             id="brand_id"
+            wire:model="brand_id"
             class="block mt-1 w-full dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
         >
 

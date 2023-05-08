@@ -35,6 +35,8 @@ Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->midd
 
 Route::get('/orders/cart', [OrderController::class, 'index'])->middleware(['auth',])
     ->name('order.index');
+Route::get('/orders/create', [OrderController::class, 'create'])->middleware(['auth',])
+    ->name('order.create');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

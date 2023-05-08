@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->foreignId('payment_method_id')->constrained('payment_methods');
-            $table->foreignId('status_id')->constrained('statuses');
-            $table->foreignId('bill_id')->constrained('bills');
+            $table->foreignId('payment_method_id')->constrained('payment_methods')->default(1);
+            $table->foreignId('status_id')->constrained('statuses')->default(1);
+            // $table->foreignId('bill_id')->constrained('bills');
         });
     }
 

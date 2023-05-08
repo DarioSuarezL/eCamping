@@ -13,6 +13,11 @@ class PaymentMethodsSeeder extends Seeder
      */
     public function run(): void
     {
+
+        Payment_Method::create([
+            'nombre' => 'P2P',
+        ]);
+
         Payment_Method::create([
             'nombre' => 'Tarjeta VISA',
         ]);

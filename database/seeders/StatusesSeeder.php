@@ -13,7 +13,7 @@ class StatusesSeeder extends Seeder
      */
     public function run(): void
     {
-        Status::create(['nombre' => 'Pendiente']);
+        Status::create(['nombre' => 'Carrito de compras']);
         Status::create(['nombre' => 'En proceso']);
         Status::create(['nombre' => 'Enviado']);
         Status::create(['nombre' => 'Entregado']);

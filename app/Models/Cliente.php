@@ -15,4 +15,24 @@ class Cliente extends Model
         'telefono',
         'user_id'
     ];
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function cantOrders()
+    {
+        return optional($this->orders())->count() ?? 0;
+    }
+
+    public function cart()
+    {
+        return $this->orders()->where('status_id', 1)->first();
+    }
 }

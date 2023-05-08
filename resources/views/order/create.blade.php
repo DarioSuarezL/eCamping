@@ -1,8 +1,7 @@
 <x-app-layout>
-        
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Aqui tienes la lista de tu carrito de compras!') }}
+            {{ __('Elije un método de pago!') }}
         </h2>
     </x-slot>
 
@@ -15,11 +14,10 @@
                     </div>
                 @endif
                 <div class="p-4 text-gray-900 dark:text-gray-100">
-                    {{ __("Lista de productos") }}
+                    {{ __("Lista de métodos") }}
                 </div>
             </div>
-            <livewire:show-cart />
-            
+            <livewire:show-methods />
 
         </div>
     </div>
