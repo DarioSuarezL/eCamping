@@ -35,10 +35,12 @@ Route::get('/products/{product}', [ProductController::class, 'show'])
 Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->middleware(['auth',])
     ->name('product.edit');
 
-Route::get('/orders/cart', [OrderController::class, 'index'])->middleware(['auth',])
-    ->name('order.index');
+Route::get('/orders/cart', [OrderController::class, 'cart'])->middleware(['auth',])
+    ->name('order.cart');
 Route::get('/orders/create', [OrderController::class, 'create'])->middleware(['auth',])
     ->name('order.create');
+Route::get('/orders', [OrderController::class, 'index'])->middleware(['auth',])
+    ->name('order.index');
 
 Route::get('/users', [ProfileController::class, 'index'])->middleware(['auth',])
     ->name('profile.index');
@@ -47,7 +49,7 @@ Route::get('/categories', [CategoryController::class, 'index'])->middleware(['au
     ->name('category.index');
 
 Route::get('/brands', [BrandController::class, 'index'])->middleware(['auth',])
-    ->name('brand.index'); 
+    ->name('brand.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

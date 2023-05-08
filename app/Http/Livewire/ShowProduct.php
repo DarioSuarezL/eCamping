@@ -14,7 +14,7 @@ class ShowProduct extends Component
     // protected $listeners = ['addToCart'];
 
     public function addToCart($id)
-    {   
+    {
         if(!auth()->user()->cliente->cantOrders() > 0){
             $order = Order::create([
                 'cliente_id' => auth()->user()->cliente->id,
@@ -33,16 +33,19 @@ class ShowProduct extends Component
             }
         }
 
-        ProductOrder::create([
+        $productorder = ProductOrder::create([
             'product_id' => $id,
             'order_id' => $order->id,
             'cantidad' => $this->cantidad,
             'subtotal' => $this->product->precio * $this->cantidad,
         ]);
 
+        $order->total = $order->total + $productorder->subtotal;
+        $order->save();
+
         $this->emit('showAlert');
     }
-    
+
     public function render()
     {
         return view('livewire.show-product');

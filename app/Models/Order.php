@@ -20,4 +20,14 @@ class Order extends Model
         return $this->belongsToMany(Product::class);
     }
 
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
+
+    public function payment_method()
+    {
+        return $this->belongsTo(Payment_Method::class);
+    }
+
 }

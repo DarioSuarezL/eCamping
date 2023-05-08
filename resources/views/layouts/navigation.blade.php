@@ -16,8 +16,8 @@
                         {{ __('Inicio') }}
                     </x-nav-link>
                 </div>
-                @auth                   
-                @if (auth()->user()->role == 0)   
+                @auth
+                @if (auth()->user()->role == 0)
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('product.create')" :active="request()->routeIs('product.create')">
@@ -27,26 +27,32 @@
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.index')">
-                        {{ __('Gestión de usuarios') }}
+                        {{ __('Usuarios') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.index')">
-                        {{ __('Gestión de categorias') }}
+                        {{ __('Categorias') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('brand.index')" :active="request()->routeIs('brand.index')">
-                        {{ __('Gestión de marcas') }}
+                        {{ __('Marcas') }}
                     </x-nav-link>
                 </div>
 
                 @else
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('order.index')" :active="request()->routeIs('order.index')">
+                    <x-nav-link :href="route('order.cart')" :active="request()->routeIs('order.cart')">
                         {{ __('Carrito de compras') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('order.index')" :active="request()->routeIs('order.index')">
+                        {{ __('Mis pedidos') }}
                     </x-nav-link>
                 </div>
                 @endif
@@ -59,7 +65,7 @@
                 </div> --}}
             </div>
 
-            @auth    
+            @auth
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -122,7 +128,7 @@
             </div>
         </div>
     </div>
-        
+
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
@@ -131,8 +137,8 @@
                 {{ __('Inicio') }}
             </x-responsive-nav-link>
 
-            @auth                
-            @if (auth()->user()->role == 0)           
+            @auth
+            @if (auth()->user()->role == 0)
 
                 <x-responsive-nav-link :href="route('product.create')" :active="request()->routeIs('product.create')">
                     {{ __('Nuevo producto') }}
@@ -147,11 +153,12 @@
                     {{ __('Gestión de marcas') }}
                 </x-responsive-nav-link>
 
-            @endif
+                @else
 
                 <x-responsive-nav-link :href="route('order.index')" :active="request()->routeIs('order.index')">
                     {{ __('Carrito de compras') }}
                 </x-responsive-nav-link>
+                @endif
             @endauth
         </div>
 
@@ -162,7 +169,7 @@
                 <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
             </div>
-            
+
                 <div class="mt-3 space-y-1">
                     <x-responsive-nav-link :href="route('profile.edit')">
                         {{ __('Perfil') }}
@@ -191,7 +198,7 @@
                         </x-responsive-nav-link>
                     </form>
                 </div>
-                
+
                 <div class="text-end py-4 px-2 hover:underline bg">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
@@ -204,7 +211,7 @@
                 </div>
             @endguest
             </div>
-        
-        
+
+
     </div>
 </nav>

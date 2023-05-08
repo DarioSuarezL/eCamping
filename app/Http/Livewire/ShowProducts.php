@@ -46,7 +46,10 @@ class ShowProducts extends Component
             'cantidad' => 1,
             'subtotal' => $this->product->precio,
         ]);
-        
+
+        $order->total = $order->total + $this->product->precio;
+        $order->save();
+
         $this->emit('showAlertCart');
     }
 
@@ -60,7 +63,7 @@ class ShowProducts extends Component
         Storage::delete('public/products/'.$product->imagen);
         $product->delete();
     }
-    
+
     public function render()
     {
         // $products = Product::paginate(18);
